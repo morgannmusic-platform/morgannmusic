@@ -1,0 +1,778 @@
+:root {
+           --body-bg-start: #a64d79;
+            --body-bg-end: rgb(223, 142, 196);
+            --text-color-1: #9b2029;
+            --text-color-105: #992a99;
+            --text-color-108: #da12da;
+            --text-color-102: #c32d6b;
+            --text-color-11: #c307c3;
+            --text-color: #9827e8;
+            --text-color2: #eecce7;
+            --nbscr: rgba(255, 255, 255, 0.5);
+            --text-color3: #992a99;
+            --texte-color-btn: rgb(235, 135, 208, 0.8);
+            --btn-info: rgba(234, 183, 220, 0.985);
+            --mms-txt: #eecce7;
+            --titre: #ffffff;
+            --ss: #ffffff8d;
+            --text-color-primary: #ffffff;
+            --light-color-start: #ffffff;
+            --light-color-end: #e780aa;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+             :root {
+                --body-bg-start: #770063;
+                --body-bg-end: #08007e;
+                --text-color-1: #593b59;
+                --text-color-105: #4c197c;
+                --text-color-108: #631f63;
+                --text-color-102: #270e3a;
+                --text-color-11: #5f335f;
+                --text-color: #45162c;
+                --text-color2: #f7f6f7;
+                --nbscr: rgba(255, 255, 255, 0.2);
+                --text-color3: #992a99;
+                --texte-color-btn: #643054;
+                --btn-info: rgba(100, 48, 84, 0.525);
+                --mms-txt: #ffffff;
+                --titre: #ffffff;
+                --ss: #ffffff8d;
+                --text-color-primary: #ffffff;
+                --light-color-start: #ff00ff;
+                --light-color-end: #ffffff;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 200vh;
+            background-image: linear-gradient(var(--body-bg-start) 0%, var(--body-bg-end) 100%);
+            color: var(--text-color-primary);
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 1px;
+            /* police par défaut du site */
+        }
+        
+        .simple-separator {
+ height: 1px;            /* Épaisseur de la barre */
+            background-color: var(--ss);
+            /* Couleur grise neutre et unie */
+            margin: 50px auto;
+            /* 50px de marge verticale, 'auto' pour centrer horizontalement */
+            width: 90%;
+            /* La barre prendra 70% de la largeur de la page */
+            max-width: 1200px;
+            /* Empêche la barre d'être trop large sur de très grands écrans */
+            min-width: 200px;
+            /* Empêche la barre d'être trop petite sur de petits écrans */
+            border-radius: 2px;
+            /* Un léger arrondi aux coins */
+            /* J'ai retiré toutes les propriétés liées au texte, dégradé, flexbox, et ombre prononcée. */
+        }
+        /* ===== NAVBAR ===== */
+        
+        
+        /* ===== TEXTE PRINCIPAL ===== */
+        /* Styles de base pour le conteneur du texte */
+        /* --- Styles de base pour l'apparence --- */
+        
+        .text-hover {
+            font-family: 'Gasoek One', sans-serif;
+            /* texte principal en Gasoek One */
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #ffffff;
+            text-align: center;
+            cursor: pointer;
+            padding: 40px;
+            user-select: none;
+            letter-spacing: -0.02em;
+            margin-top: 70px;
+            /* éviter d’être sous la navbar */
+        }
+        
+        @media (max-width: 600px) {
+            .text-hover {
+                font-size: 1.9rem;
+                padding: 20px 10px;
+                letter-spacing: -0.05em;
+                text-shadow: 0 0 50px rgba(0, 0, 0, 0.577);
+            }
+        }
+        
+        .word {
+            display: inline-block;
+            margin: 0 4px;
+        }
+        
+        .letter {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .letter:hover {
+            color: var(--text-color);
+        }
+        
+        .letter.animate {
+            animation: appleJump 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes appleJump {
+            0% {
+                transform: translateY(0) scale(1);
+                color: var(--text-color-1);
+            }
+            30% {
+                transform: translateY(-8px) scale(1.05);
+                color: var(--text-color-105);
+            }
+            60% {
+                transform: translateY(-12px) scale(1.08);
+                color: var(--text-color-108);
+            }
+            80% {
+                transform: translateY(-4px) scale(1.02);
+                color: var(--text-color-102);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                color: var(--text-color-11);
+            }
+        }
+        
+        .titre-page {
+            text-align: center;
+            font-family: 'helvetica', sans-serif;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: var(--text-color2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .titre-page.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 600px) {
+            .titre-page {
+                font-size: 1em;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+        }
+        #image-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            margin: 0;
+            /* Assurez-vous que l'élément est aussi large que son contenu */
+            padding: 0;
+        }
+        
+        #image-container img {
+            display: block;
+            width: 200px;
+            height: auto;
+            /* Ou une hauteur fixe comme 150px si tu veux une taille uniforme */
+            object-fit: cover;
+            /* Recadre l'image pour remplir sans déformer */
+            cursor: pointer;
+            max-width: 100%;
+            /* La transition pour la fluidité du zoom */
+            transition: transform 0.3s ease-in-out;
+        }
+        /* L'effet de zoom quand la souris passe sur l'image */
+        
+        #image-container img:hover {
+            transform: scale(1.3);
+            /* Grossit l'image de 10% */
+        }
+        
+        @media (min-width: 768px) {
+            #image-container {
+                flex-direction: row;
+                gap: 30px;
+            }
+            #image-container img {
+                width: 250px;
+            }
+        }
+        
+        #image-container-2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            margin: 0;
+            /* Assurez-vous que l'élément est aussi large que son contenu */
+            padding: 0;
+        }
+        
+        #image-container-2 img {
+            display: block;
+            width: 200px;
+            height: auto;
+            /* Ou une hauteur fixe comme 150px si tu veux une taille uniforme */
+            object-fit: cover;
+            /* Recadre l'image pour remplir sans déformer */
+            cursor: pointer;
+            max-width: 100%;
+            /* La transition pour la fluidité du zoom */
+            transition: transform 0.3s ease-in-out;
+        }
+        /* L'effet de zoom quand la souris passe sur l'image */
+        
+        #image-container-2 img:hover {
+            transform: scale(1.3);
+            /* Grossit l'image de 10% */
+        }
+        
+        @media (min-width: 768px) {
+            #image-container-2 {
+                flex-direction: row;
+                gap: 30px;
+            }
+            #image-container-2 img {
+                width: 250px;
+            }
+        }
+        
+        .btn {
+            background-color: #ffffff;
+            border: 2px solid #e780aa;
+            color: var(--text-color-btn);
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px transparent;
+            min-width: 150px;
+            align-items: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--text-color-btn);
+            box-shadow: 0 0 15px #ffffff;
+            border: 2px solid #ffffff;
+            transform: translateY(-2px);
+            color: #ffffff;
+            align-items: center;
+        }
+        
+        .row {
+            display: flex;
+            color: var(--text-color-btn);
+            justify-content: center;
+            gap: 20px;
+            /* espace entre les boutons */
+            margin-bottom: 30px;
+            /* espace avec le bouton voir plus */
+        }
+        /* --- 1. Style de l'ICÔNE (Le plus important pour la taille) --- */
+        
+        .bouton-icone {
+            /* Définir une petite taille pour l'image */
+            width: 25px;
+            height: 25px;
+            /* Pour s'assurer qu'elle n'a pas de bordure non désirée */
+            display: block;
+        }
+        /* --- 2. Style du BOUTON (Positionnement fixé) --- */
+        
+        .info-bouton {
+            /* Positionnement fixé (inchangé) */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            /* Taille et forme du conteneur */
+            width: 50px;
+            /* Définir une taille fixe pour le bouton */
+            height: 50px;
+            /* Définir une taille fixe pour le bouton */
+            border-radius: 50%;
+            /* Rendre le bouton rond */
+            /* Centrage de l'image à l'intérieur du bouton */
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            /* Cache le texte qui dépasse */
+            /* Centrage horizontal */
+            align-items: center;
+            /* Centrage vertical */
+            /* Design (Ajusté pour que l'image apparaisse bien) */
+            background-color: var(--btn-info);
+            /* Couleur du fond du cercle */
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: width 0.4s ease-out, border-radius 0.4s ease-out, background-color 0.3s;
+            transition: 0.5s all;
+        }
+        
+        .info-bouton:hover {
+            backdrop-filter: blur(10px);
+            background-color: var(--btn-info);
+            box-shadow: 0 15px 12px rgba(0, 0, 0, 0.508);
+            transform: scale(1.1);
+        }
+        
+        .info-bouton-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            /* Permet un bon positionnement interne */
+        }
+        
+        .bouton-icone {
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+            /* Empêche l'icône de rétrécir */
+            transition: margin-right 0.4s ease-out;
+            /* Pour animer le déplacement de l'icône */
+        }
+        /* --- Styles du TEXTE caché initialement --- */
+        
+        .info-texte {
+            color: white;
+            font-family: sans-serif;
+            font-size: 14px;
+            white-space: nowrap;
+            /* Empêche le texte de passer à la ligne */
+            margin-left: 0;
+            /* Pas de marge à gauche quand fermé */
+            opacity: 0;
+            /* Invisible quand fermé */
+            max-width: 0;
+            /* Prend 0 largeur quand fermé */
+            transition: opacity 0.3s ease-out, max-width 0.3s ease-out, margin-left 0.4s ease-out;
+            /* Anime l'apparition du texte */
+        }
+        /* --- Styles lorsque le bouton est OUVERT (classe 'ouvert') --- */
+        
+        .info-bouton.ouvert {
+            width: 250px;
+            /* Largeur du bouton quand il est ouvert */
+            border-radius: 25px;
+            /* Bordure légèrement arrondie quand ouvert (forme de pilule) */
+            /* L'icône se décale vers la gauche */
+            justify-content: flex-start;
+            /* Aligne l'icône à gauche */
+            padding-left: 15px;
+            /* Petit espace à gauche de l'icône */
+        }
+        
+        .info-bouton.ouvert .bouton-icone {
+            margin-right: 10px;
+            /* Ajoute un espace entre l'icône et le texte */
+        }
+        
+        .info-bouton.ouvert .info-texte {
+            opacity: 1;
+            /* Rends le texte visible */
+            max-width: 200px;
+            /* Donne une largeur maximale au texte */
+            margin-left: 0;
+            /* Pas de marge supplémentaire */
+            padding-right: 15px;
+            /* Petit espace à droite du texte */
+        }
+        
+        .mms {
+            font-size: 2.2em;
+            margin-top: 10px;
+            text-align: center;
+            font-family: 'helvetica', sans-serif;
+            color: var(--mms-txt);
+        }
+        
+        .pied-de-page {
+            font-size: 0.8em;
+            margin-top: 10px;
+            text-align: center;
+            font-family: 'helvetica', sans-serif;
+            color: var(--mms-txt);
+        }
+        
+        .hero-text2 {
+            font-size: 5vw;
+            font-weight: 600;
+            font-family: 'helvetica', cursive;
+            color: #ffffff;
+            /* Couleur du texte principal (gris très foncé) */
+            text-align: center;
+            line-height: 1.1;
+            cursor: pointer;
+            padding: 20px;
+            margin-top: 50px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        @media (max-width: 2000px) {
+            .hero-text2 {
+                font-size: 50pt;
+                /* Augmente la taille du texte sur les petits écrans */
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-text2 {
+                font-size: 45pt;
+                /* Réduit encore la taille du texte sur les très petits écrans */
+            }
+        }
+
+        @media (max-width: 800px) {
+            .hero-text2 {
+                font-size: 40pt;
+                /* Réduit encore la taille du texte sur les très petits écrans */
+            }
+        }
+
+        @media (max-width: 700px) {
+            .hero-text2 {
+                font-size: 35pt;
+                /* Réduit encore la taille du texte sur les très petits écrans */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text2 {
+                font-size: 30pt;
+                /* Réduit encore la taille du texte sur les très petits écrans */
+            }
+        }
+        
+        .hero-text2:hover {
+            transform: scale(1.01);
+        }
+        /* 2. Style spécifique pour le mot "News" (Police Manuscrite + Couleur Dégradée) */
+        
+        .highlight {
+            /* NOUVELLE POLICE UNIQUEMENT POUR "NEWS" */
+            font-family: 'helvetica', cursive;
+            font-size: 5.5vw;
+            /* Légèrement plus grand pour compenser l'aspect manuscrit */
+            font-weight: 400;
+            /* Pacifico n'a pas de graisse (weight) à définir */
+            /* DÉGRADÉ (L'effet "Air") */
+            background-image: linear-gradient( 90deg, #f755c9, /* Violet */
+            #d246e5/* Bleu */
+            );
+            /* Ces propriétés appliquent le dégradé uniquement au texte */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            /* Animation de lueur subtile */
+            transition: filter 0.5s ease, transform 0.10s ease;
+        }
+        /* 3. Animation de mot individuel */
+        
+        .word {
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .word:hover {
+            color: var(--titre);
+            transform: translateY(-5px);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        /* Animation pour "News" au survol */
+        
+        .highlight:hover {
+            filter: brightness(1.2);
+            transform: translateY(-20px);
+            /* Se soulève comme les autres mots */
+        }
+        
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            /* espace entre les boutons */
+            margin-bottom: 30px;
+            /* espace avec le bouton voir plus */
+        }
+        
+        .btn {
+            background-color: #ffffff;
+            border: 2px solid var(--texte-color-btn);
+            color: #EA86D1;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.8s;
+            box-shadow: 0 0 10px transparent;
+            min-width: 150px;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background-color: var(--text-color-btn);
+            box-shadow: 0 0 15px #ffffff;
+            border: 2px solid #ffffff;
+            transform: translateY(-2px);
+            color: #ffffff;
+            align-items: center;
+        }
+        /* ===== BONNE ANNÉE CONFETTI ===== */
+        
+        body.no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .titre-arrivee {
+            font-size: 18pt;
+            font-family: 'helvetica', sans-serif;
+            color: var(--titre);
+            text-align: left;
+            margin-top: 60px;
+            margin-left: 130px;
+        }
+
+        .lecteur {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        h6 {
+            font-family: 'helvetica', sans-serif;
+            color: white;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 18pt;
+                        margin-left: 130px;
+
+
+        }
+
+        p {
+             font-family: 'helvetica', sans-serif;
+            color: white;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 12pt;
+                        margin-left: 130px;
+
+        }
+
+        @media (max-width: 2000px) {
+            h6 {
+                margin-left: 130px;
+            }
+
+                p {
+                    margin-left: 130px;
+                    margin-right: 100px;
+                }
+        }
+
+        @media (max-width: 1500px) {
+            h6 {
+                margin-left: 90px;
+            }
+
+                p {
+                        margin-left: 90px;
+                        margin-right: 90px;
+                    }
+        }
+
+      @media (max-width: 1100px) {
+            h6 {
+                margin-left: 100px;
+            }
+                p {
+                            margin-left: 100px;
+                            margin-right: 100px;
+                        }
+        }
+
+        @media (max-width: 1000px) {
+            h6 {
+                margin-left: 80px;
+            }
+
+                p {
+                            margin-left: 80px;
+                            margin-right: 90px;
+                        }
+        }
+
+        @media (max-width: 900px) {
+            h6 {
+                margin-left: 60px;
+            }
+                p {
+                            margin-left: 60px;
+                            margin-right: 60px;
+                        }
+        }
+
+        @media (max-width: 800px) {
+            h6 {
+                margin-left: 45px;
+            }
+                p {
+                            margin-left: 45px;
+                            margin-right: 45px;
+                        }
+        }
+
+        @media (max-width: 700px) {
+            h6 {
+                margin-left: 30px;
+            }
+                p {
+                            margin-left: 30px;
+                            margin-right: 30px;
+                        }
+        }
+
+        @media (max-width: 600px) {
+            h6 {
+                margin-left: 20px;
+                font-size: 15pt;
+            }
+                p {
+                            margin-left: 20px;
+                            font-size: 10pt;
+                            margin-right: 30px;
+                        }
+        }
+
+        @media (max-width: 500px) {
+            h6 {
+                margin-left: 17px;
+                font-size: 13pt;
+            }
+                p {
+                            margin-left: 17px;
+                            font-size: 8pt;
+                        }
+        }
+        @media (max-width: 700px) {
+            .hero-text2 {
+                font-size: 35pt;
+                /* Réduit encore la taille du texte sur les très petits écrans */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text2 {
+                font-size: 30pt;
+                /* Réduit encore la taille du texte sur les très petits écrans */
+            }
+        }
+
+
+        
+
+        .footer {
+    background: #9d5c7e;
+    color: rgb(243, 211, 238);
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.footer-left {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #bdbdbd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    font-size: 13px;
+    color: #8a8a8a;
+ text-align: center;
+}
+@media (max-width: 900px) {
+            .titre-arrivee {
+                text-align: left;
+                margin-left: 60px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .titre-arrivee {
+                text-align: left;
+                margin-left: 45px;
+                margin-right: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .titre-arrivee {
+            
+                text-align: left;
+                margin-left: 20px;
+                font-size: 15pt;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .titre-arrivee {
+            
+                text-align: left;
+                margin-left: 17px;
+                font-size: 13pt;
+            }
+        } 

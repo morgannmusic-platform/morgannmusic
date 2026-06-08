@@ -1,0 +1,136 @@
+.navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: transparent;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: 0.5s all;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.567);
+            border-top-left-radius: 0;
+            /* Coin supérieur gauche */
+        }
+        
+        .navbar.scrolled {
+            background: var(--nbscr);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.567);
+            border-top-left-radius: 0;
+            /* Coin supérieur gauche */
+            border-top-right-radius: 0;
+            /* Coin supérieur droit */
+            border-bottom-left-radius: 30px;
+            /* Coin inférieur gauche arrondi */
+            border-bottom-right-radius: 30px;
+        }
+        
+        .navbar.scrolled:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.567);
+            border-top-left-radius: 0;
+            /* Coin supérieur gauche */
+            border-top-right-radius: 0;
+            /* Coin supérieur droit */
+            border-bottom-left-radius: 15px;
+            /* Coin inférieur gauche arrondi */
+            border-bottom-right-radius: 15px;
+        }
+        
+        .navbar nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+        }
+        
+        .navbar .logo img {
+            height: 40px;
+            width: auto;
+            user-select: none;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .navbar ul li a:hover {
+            opacity: 0.7;
+        }
+        
+        .navbar .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar .menu-toggle {
+                display: block;
+                /* FIX: Assure que le bouton est visible sur mobile */
+                position: relative;
+                z-index: 9999;
+                color: var(--text-color3);
+                /* Assure que le bouton est au-dessus de tout pour être cliquable */
+            }
+            .navbar ul {
+                /* Menu mobile réduit sur le côté */
+                position: absolute;
+                top: 65px;
+                right: 0;
+                width: 200px;
+                /* Largeur réduite pour le menu latéral */
+                background: rgba(255, 45, 255, 0.304);
+                color: #992a99;
+                /* J'ai gardé votre couleur ajustée */
+                flex-direction: column;
+                align-items: flex-start;
+                -webkit-backdrop-filter: blur(10px);
+                padding: 15px;
+                /* STRATÉGIE pour la visibilité et éviter le blocage des clics */
+                display: flex;
+                visibility: hidden;
+                /* Cache le menu */
+                pointer-events: none;
+                /* TRÈS IMPORTANT: Empêche le menu masqué de bloquer le clic sur le bouton */
+                border-radius: 0 0 0 25px;
+                /* J'ai gardé votre rayon de bordure ajusté */
+                transition: transform 0.3s ease-out, visibility 0.3s;
+                transform: translateX(100%);
+                /* Masque le menu à droite (hors de vue) */
+            }
+            .navbar ul.active {
+                visibility: visible;
+                /* Révèle le menu */
+                pointer-events: all;
+                /* Permet d'interagir avec le menu */
+                transform: translateX(0);
+                /* Révèle le menu */
+            }
+            .navbar ul li {
+                width: 100%;
+                margin: 10px 0;
+            }
+            .navbar ul li a:hover {
+                text-decoration: underline;
+            }
+        }
