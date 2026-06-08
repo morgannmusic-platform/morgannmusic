@@ -10,7 +10,7 @@
             --text-color2: #eecce7;
             --nbscr: rgba(255, 255, 255, 0.5);
             --text-color3: #992a99;
-            --texte-color-btn: rgb(235, 135, 208, 0.8);
+            --text-color-btn: rgb(235, 135, 208, 0.8);
             --btn-info: rgba(234, 183, 220, 0.985);
             --mms-txt: #eecce7;
             --titre: #ffffff;
@@ -33,7 +33,7 @@
                 --text-color2: #f7f6f7;
                 --nbscr: rgba(255, 255, 255, 0.2);
                 --text-color3: #992a99;
-                --texte-color-btn: #643054;
+                --text-color-btn: #643054;
                 --btn-info: rgba(100, 48, 84, 0.525);
                 --mms-txt: #ffffff;
                 --titre: #ffffff;
@@ -522,7 +522,7 @@
         
         .btn {
             background-color: #ffffff;
-            border: 2px solid var(--texte-color-btn);
+            border: 2px solid var(--text-color-btn);
             color: #EA86D1;
             border: none;
             padding: 12px 24px;
@@ -534,6 +534,7 @@
             min-width: 150px;
             align-items: center;
             margin-top: 20px;
+            color: #EA86D1; /* Couleur spécifique pour le texte du bouton */
         }
         
         .btn:hover {

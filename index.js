@@ -1,23 +1,3 @@
-
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Script pour le menu hamburger
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-
-        // Nous utilisons un seul écouteur d'événement pour le basculement
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-
         // ANIMATION DES LETTRES
         document.querySelectorAll('.letter').forEach(letter => {
             letter.addEventListener('mouseenter', function() {
@@ -33,8 +13,8 @@
 
     
         // 1. Utilisation de querySelector pour cibler les classes CSS
-        const animationZone = document.querySelector('.hero-text');
-        const animatedText = document.querySelector('.morgann-music');
+        const animationZone = document.querySelector('.hero-text2');
+        const animatedText = document.querySelector('.highlight');
 
         // Vérifie si les éléments existent avant de continuer
         if (animationZone && animatedText) {
@@ -75,7 +55,7 @@
             });
 
         } else {
-            console.error("Erreur: Les éléments .hero-text ou .morgann-music n'ont pas été trouvés dans le DOM.");
+            console.error("Erreur: Les éléments .hero-text2 ou .highlight n'ont pas été trouvés dans le DOM.");
         }
     
 
@@ -136,6 +116,7 @@
 
             const confettis = [];
             const groundY = canvas.height;
+            let animationId;
 
             for (let i = 0; i < nb; i++) {
                 confettis.push({
@@ -155,10 +136,11 @@
             let fadeOutStarted = false;
             let textOpacity = 1;
 
-            function draw() {
+            function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 confettis.forEach(c => {
+                    if (fadeOutStarted) ctx.globalAlpha = alpha;
                     ctx.beginPath();
                     ctx.lineWidth = c.r / 2;
                     ctx.strokeStyle = c.color;
@@ -167,7 +149,12 @@
                     ctx.stroke();
                 });
 
-                update();
+                if (!fadeOutStarted) {
+                    update();
+                    animationId = requestAnimationFrame(animate);
+                } else {
+                    fadeOutStep();
+                }
             }
 
             function update() {
@@ -192,9 +179,8 @@
                 }
             }
 
-            const interval = setInterval(draw, 20);
+            animationId = requestAnimationFrame(animate);
 
-            // Après 3 secondes : enlever le blur et fade le texte
             setTimeout(() => {
                 const overlay = document.getElementById('newyear-overlay');
                 if (overlay) overlay.style.backdropFilter = "blur(0px)";
@@ -209,38 +195,28 @@
 
             }, 3000);
 
-            // CROIX DE FERMETURE
             const closeBtn = document.getElementById('close-overlay');
             closeBtn.addEventListener('click', () => {
-                clearInterval(interval);
+                cancelAnimationFrame(animationId);
                 const overlay = document.getElementById('newyear-overlay');
                 if (overlay) overlay.remove();
                 document.body.classList.remove('no-scroll');
             });
 
+            let alpha = 1;
             function fadeOutConfettis() {
                 fadeOutStarted = true;
-                let alpha = 1;
-                const fadeInterval = setInterval(() => {
-                    alpha -= 0.02;
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.globalAlpha = alpha;
-                    confettis.forEach(c => {
-                        ctx.beginPath();
-                        ctx.lineWidth = c.r / 2;
-                        ctx.strokeStyle = c.color;
-                        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
-                        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
-                        ctx.stroke();
-                    });
-                    ctx.globalAlpha = 1;
-                    if (alpha <= 0) {
-                        clearInterval(fadeInterval);
-                        clearInterval(interval);
-                        const overlay = document.getElementById('newyear-overlay');
-                        if (overlay) overlay.remove();
-                    }
-                }, 20);
+            }
+
+            function fadeOutStep() {
+                alpha -= 0.01;
+                if (alpha <= 0) {
+                    cancelAnimationFrame(animationId);
+                    const overlay = document.getElementById('newyear-overlay');
+                    if (overlay) overlay.remove();
+                } else {
+                    animate();
+                }
             }
         }
 
