@@ -71,7 +71,7 @@
     
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Sélectionner tous les éléments à animer
-            const elementsToAnimate = document.querySelectorAll('.titre-page');
+            const elementsToAnimate = document.querySelectorAll('.titre-page, .service-card, .page-card');
 
             // 2. Définir les options de l'observateur
             const observerOptions = {
@@ -220,7 +220,11 @@
             }
         }
 
+        // Initialisation de l'animation de confettis si l'overlay est présent
         window.addEventListener('load', () => {
-            document.body.classList.add('no-scroll'); // bloque le scroll pendant l'animation
-            lancerConfettis(300);
+            const newYearOverlay = document.getElementById('newyear-overlay');
+            if (newYearOverlay) {
+                document.body.classList.add('no-scroll'); // bloque le scroll pendant l'animation
+                lancerConfettis(300);
+            }
         });

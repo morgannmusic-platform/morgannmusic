@@ -1,0 +1,12 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Morgann Music//NONSGML v1.0//EN
+BEGIN:VEVENT
+UID:20260624T000000Z-endofanera@morgannmusic.uk
+DTSTAMP:20240520T100000Z
+DTSTART;VALUE=DATE:20260624
+DTEND;VALUE=DATE:20260625
+SUMMARY:End of an era - Entrons dans une nouvelle ère.
+DESCRIPTION:Nouvelle sortie musicale de Morgann Music : End of an era.
+END:VEVENT
+END:VCALENDAR
