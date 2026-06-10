@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'Giker'; /* Nom que vous utiliserez pour la police */
-    src: url('../font/giker/Gliker-Regular.woff2') format('woff2'), /* Chemin relatif depuis le CSS */
+    font-family: 'Giker';
+    src: url('../font/giker/Gliker-Regular.woff2') format('woff2'),
          url('../font/giker/Gliker-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Optimisation pour le chargement de la police */
+    font-display: swap;
 }
 
 
@@ -46,51 +46,6 @@
         border-radius: 2px;
     }
 
-    .footer {
-        background: #9d5c7e;
-        color: rgb(243, 211, 238);
-        padding: 40px 20px;
-        font-family: 'Poppins', sans-serif;
-        border-top-left-radius: 40px;
-        border-top-right-radius: 40px;
-    }
-
-    .footer-container {
-        max-width: 1200px;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    .footer-left {
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    .footer-links {
-        display: flex;
-        gap: 25px;
-        flex-wrap: wrap;
-    }
-
-    .footer-links a {
-        color: #bdbdbd;
-        text-decoration: none;
-        font-size: 14px;
-        transition: 0.3s;
-    }
-
-    .footer-links a:hover {
-        color: #ffffff;
-    }   
-
-    .footer-bottom {
-        font-size: 13px;
-        color: #8a8a8a;
-        text-align: center;
-    }
-
     .accueil {
         
         border-bottom: 10px solid var(--bg-accueil);
@@ -130,20 +85,22 @@
             overflow: hidden;
         }
 
+        
+
         .next-release-bg-img {
             display: block;
             width: 100%;
             height: auto;
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            
         }
 
-        /* Ajout d'un voile sombre pour la lisibilité puisque l'image est dans le HTML */
+
         .next-release-1::after,
         .next-release-2::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.206);
             z-index: 0;
         }
 
@@ -235,8 +192,8 @@
         .calendar-buttons-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px; /* Espace entre les boutons */
-            margin-top: 25px; /* Espace au-dessus du groupe de boutons */
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .calendar-button {
@@ -253,7 +210,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            white-space: nowrap; /* Empêche le texte du bouton de se couper */
+            white-space: nowrap;
         }
 
         .calendar-button:hover {
@@ -263,12 +220,11 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        /* Styles spécifiques pour les icônes de marque */
         .calendar-button .fa-google {
-            color: #DB4437; /* Couleur de Google */
+            color: #DB4437;
         }
         .calendar-button .fa-apple {
-            color: #A2AAAD; /* Couleur d'Apple */
+            color: #A2AAAD;
         }
 
         .next-release-1:hover .next-release-bg-img,
@@ -282,7 +238,7 @@
                 border: none;
             }
             .calendar-buttons-group {
-                justify-content: center; /* Centrer les boutons sur mobile */
+                justify-content: center;
                 margin-top: 20px;
             }
             .next-release-content {
@@ -522,6 +478,242 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
+
+        
+        .accueil-artiste {
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 10px solid var(--bg-accueil);
+        }
+
+        .accueil-artiste-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            z-index: 2;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .accueil-artiste-content h1 {
+            font-size: 56pt;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .accueil-artiste-content p {
+            font-size: 28pt;
+            font-weight: 400;
+            margin-bottom: 0;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .accueil-artiste img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .accueil-artiste:hover img {
+            transform: scale(1.05);
+        }
+
+
+
+        @media (max-width: 768px) {
+            .accueil-content h1 {
+                font-size: 24pt;
+            }
+            .accueil-content p {
+                font-size: 14pt;
+            }
+        }
+
+        .dernierement-feat {
+            background-color: #C6C7C1;
+            border-bottom: 10px solid var(--bg-accueil);
+        }
+
+        .dernierement-solo {
+            background-color: #ffa0fc;
+            border-bottom: 10px solid var(--bg-accueil);
+        }
+
+        .dernierement-feat-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: flex-start;
+            align-items: flex-start;
+        }
+
+        .dernierement-feat-content h2 {
+            font-size: 36pt;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .dernierement-feat-content p {
+            font-size: 16pt;
+            font-weight: 400;
+            color: #1b191d;
+        }
+
+        .dernierement-feat-content img {
+            width: 150px;
+            height: auto;
+        }
+        
+        .feat-card {
+            width: fit-content;
+            height: 85px;
+            background: #ffffff5c;
+            border: 1px solid #ffffff75;
+            border-radius: 70px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;  /* Pour centrer verticalement */
+            padding-left: 7.5px; /* <-- AJOUTE ÇA ICI pour décaler l'image du bord gauche */
+            box-sizing: border-box; /* Optionnel mais conseillé pour que le padding n'agrandisse pas la largeur de ta carte */
+        }
+
+
+        .feat-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 70px;
+        }
+
+        .feat-card h2 {
+            font-size: 30pt;
+            font-weight: 600;
+            color: #000000ea;
+            margin-left: 7.5px;
+            margin-right: 11.5px;
+            
+        }
+
+        .dernieresortie-feat{
+            max-width: 1200px;
+            margin-top: -100px;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: flex-start;
+            align-items: flex-start;
+            
+        }
+
+
+        .pochette-feat {
+            width: 250px;
+            height: 250px;
+            border-radius: 30px;
+            border: 2px solid #ffffff75;
+            flex-direction: column;
+            box-sizing: border-box;
+            direction: absolute;
+
+
+
+        }
+
+        .pochette-feat img {
+            width: 100%;
+            border-radius: 30px;
+            height: auto;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .s-f {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .s-f-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .s-f h1 {
+            font-size: 30pt;
+            font-weight: 600;
+            color: #000000ea;
+            margin-left: 7.5px;
+        }
+        
+        .listento {
+            width: fit-content;
+            height: 65px;
+            background: #ffffff5c;
+            border: 1px solid #ffffff75;
+            border-radius: 70px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;  /* Pour centrer verticalement */
+            padding-left: 0; /* <-- AJOUTE ÇA ICI pour décaler l'image du bord gauche */
+            box-sizing: border-box; /* Optionnel mais conseillé pour que le padding n'agrandisse pas la largeur de ta carte */
+            transition: all 0.3s ease;
+        }
+
+        .listento:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-3px);
+            border-radius: 70px;
+        }
+        
+        .listento a {
+            display: flex;
+            align-items: center; /* Centre l'image et le texte verticalement */
+            gap: 10px; /* Espace entre l'image et le texte */
+            padding: 0 25px 0 15px; /* Padding interne du bouton */
+            text-decoration: none; /* Supprime le soulignement par défaut du lien */
+            color: inherit; /* Hérite la couleur du texte ou la définit explicitement */
+            width: 100%; /* Le lien remplit la largeur du conteneur .listento */
+            height: 100%; /* Le lien remplit la hauteur du conteneur .listento */
+            box-sizing: border-box;
+        }
+
+
+        .listento img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 70px;
+        }
+
+        .listento p {
+            font-size: 1.2rem; /* Taille de police plus adaptée */
+            font-weight: 600;
+            color: var(--txt-fn); /* Utilise la variable de couleur de texte pour la cohérence */
+            margin-left: 0; /* Le gap gère l'espacement maintenant */
+        }
+        
+
 
 
 

@@ -34,6 +34,23 @@ fetch("/assets/navbar/navbar.html")
             });
         });
 
+        // Gestion du changement de couleur du thème au survol de la navbar (quand elle est scrollée)
+        if (navbar) {
+            navbar.addEventListener('mouseenter', () => {
+                // Si la navbar est scrollée ET survolée, on met la couleur du thème à #d7f1e0
+                if (navbar.classList.contains('scrolled')) {
+                    themeColorMeta.setAttribute('content', '#d7f1e0');
+                }
+            });
+
+            navbar.addEventListener('mouseleave', () => {
+                // Si la navbar est scrollée ET que la souris quitte, on remet la couleur du thème à #e0ffd6
+                if (navbar.classList.contains('scrolled')) {
+                    themeColorMeta.setAttribute('content', '#e0ffd6');
+                }
+            });
+        }
+
         if (menuToggle && navLinks) {
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');

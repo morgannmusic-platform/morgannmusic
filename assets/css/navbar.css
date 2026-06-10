@@ -1,7 +1,8 @@
     :root {
         --bg-nb: #e0ffd600;
-        --nbscr: #e0ffd6db;
-        --lnbscr: rgba(134, 191, 255, 0.537);
+        --nbscr: #e0ffd6b3;
+        --nbscrop: #e0ffd6;
+        --lnbscr: rgba(78, 148, 71, 0.729);
         --text-color3: #ffffff;
         --text-color2: #000000
     }
@@ -20,8 +21,9 @@
             left: 0;
             width: 100%;
             background: var(--bg-nb);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+            border-radius: ease-in-out;
+
             z-index: 1000;
             cursor: pointer;
 
@@ -30,30 +32,39 @@
         .navbar-:hover {
             background: var(--nbscr);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.567);
-            border-top-left-radius: 0;
+            margin-top: 10px;
+            margin-right: 10px;
+            width: 98%;
+            border-radius: 0 50px 50px 0;
+            border-bottom: 1px solid var(--lnbscr);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+
+
         }
         
         .navbar-.scrolled {
-            background: var(--nbscr);
+            background: linear-gradient(180deg, var(--nbscrop), var(--nbscr));
             backdrop-filter: blur(10px);
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.567);
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            transition: box-shadow 0.5s, border-radius 0.3s;
             border-bottom: 1px solid var(--lnbscr);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+
         }        
         
 
         
         .navbar-.scrolled:hover {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.567);
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.567);
+            margin: 10px;
+            width: 99%;
+            border-radius: 50px;
+            transition: all 0.5s;
         }
         
         .navbar- nav {
