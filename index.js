@@ -1,3 +1,4 @@
+    document.addEventListener('DOMContentLoaded', () => {
         // ANIMATION DES LETTRES
         document.querySelectorAll('.letter').forEach(letter => {
             letter.addEventListener('mouseenter', function() {
@@ -9,10 +10,8 @@
                 }
             });
         });
-    
 
-    
-        // 1. Utilisation de querySelector pour cibler les classes CSS
+        // ANIMATION DU GRADIENT (HERO TEXT)
         const animationZone = document.querySelector('.hero-text2');
         const animatedText = document.querySelector('.highlight');
 
@@ -105,7 +104,7 @@
             elementsToAnimate.forEach(element => {
                 observer.observe(element);
             });
-        });
+    });
 
     
         function lancerConfettis(nb = 300) {
@@ -228,3 +227,4 @@
                 lancerConfettis(300);
             }
         });
+    });
