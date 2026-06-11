@@ -545,7 +545,7 @@
         }
 
         .dernierement-solo {
-            background-color: #ffa0fc;
+            background-color: #83B9D5;
             border-bottom: 10px solid var(--bg-accueil);
         }
 
@@ -585,9 +585,9 @@
             border-radius: 70px;
             display: flex;
             flex-direction: row;
-            align-items: center;  /* Pour centrer verticalement */
-            padding-left: 7.5px; /* <-- AJOUTE ÇA ICI pour décaler l'image du bord gauche */
-            box-sizing: border-box; /* Optionnel mais conseillé pour que le padding n'agrandisse pas la largeur de ta carte */
+            align-items: center;
+            padding-left: 7.5px;
+            box-sizing: border-box;
         }
 
 
@@ -667,9 +667,9 @@
             border-radius: 70px;
             display: flex;
             flex-direction: row;
-            align-items: center;  /* Pour centrer verticalement */
-            padding-left: 0; /* <-- AJOUTE ÇA ICI pour décaler l'image du bord gauche */
-            box-sizing: border-box; /* Optionnel mais conseillé pour que le padding n'agrandisse pas la largeur de ta carte */
+            align-items: center;
+            padding-left: 0;
+            box-sizing: border-box;
             transition: all 0.3s ease;
         }
 
@@ -681,13 +681,13 @@
         
         .listento a {
             display: flex;
-            align-items: center; /* Centre l'image et le texte verticalement */
-            gap: 10px; /* Espace entre l'image et le texte */
-            padding: 0 25px 0 15px; /* Padding interne du bouton */
-            text-decoration: none; /* Supprime le soulignement par défaut du lien */
-            color: inherit; /* Hérite la couleur du texte ou la définit explicitement */
-            width: 100%; /* Le lien remplit la largeur du conteneur .listento */
-            height: 100%; /* Le lien remplit la hauteur du conteneur .listento */
+            align-items: center;
+            gap: 10px;
+            padding: 0 25px 0 15px;
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+            height: 100%;
             box-sizing: border-box;
         }
 
@@ -700,15 +700,12 @@
         }
 
         .listento p {
-            font-size: 1.2rem; /* Taille de police plus adaptée */
+            font-size: 1.2rem;
             font-weight: 600;
-            color: var(--txt-fn); /* Utilise la variable de couleur de texte pour la cohérence */
-            margin-left: 0; /* Le gap gère l'espacement maintenant */
+            color: var(--txt-fn);
+            margin-left: 0;
         }
 
-/* ==========================================================================
-   MORGANN MUSIC PLATFORMS - SYSTEME DE STYLES STRUCTURÉ (index-la.css)
-   ========================================================================== */
 
 :root {
     --glass-bg: rgba(255, 255, 255, 0.45);
@@ -732,10 +729,9 @@
     padding: 120px 24px 60px 24px;
     display: flex;
     flex-direction: column;
-    gap: 32px; /* Espace équilibré entre chaque section bloc */
+    gap: 32px;
 }
 
-/* Style de l'en-tête (Hero) */
 .about-hero {
     text-align: center;
     padding: 40px 20px;
@@ -775,7 +771,6 @@
     line-height: 1.5;
 }
 
-/* Modèle de Carte Section Unique (Liquid Glass de Base) */
 .about-card {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
@@ -815,7 +810,6 @@
     margin: 0;
 }
 
-/* Grille de l'écosystème structuré */
 .grid-branches {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -848,7 +842,6 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Couleurs spécifiques aux branches */
 .music-pinnacle { border-top: 3px solid #2997ff; }
 .music-pinnacle .branch-icon { color: #2997ff; }
 
@@ -871,7 +864,6 @@
     margin: 0;
 }
 
-/* Structure Strict de la Frise Chronologique */
 .structured-timeline {
     display: flex;
     flex-direction: column;
@@ -912,7 +904,6 @@
     margin: 0;
 }
 
-/* Grille des indicateurs et mesures numériques */
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -943,7 +934,6 @@
     letter-spacing: 0.5px;
 }
 
-/* REGLAGES SMARTHONE / RESPONSIVE COMPLET */
 @media (max-width: 768px) {
     .about-page-wrapper {
         padding-top: 100px;
@@ -963,4 +953,56 @@
         grid-template-columns: 1fr;
         gap: 16px;
     }
+}
+
+.last-release {
+    border-bottom: 10px solid var(--bg-accueil);
+}
+
+.last-release-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+
+}
+
+.last-release img {
+    width: 100%;
+    height: auto;
+    display: block;
+}   
+
+.last-release h1 {
+    font-size: 3.5rem;
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+.last-release p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.805);
+    margin: 0;
+}
+
+.last-release h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.last-release-info {
+    position: absolute;
+    z-index: 2;
+    margin-top: 220px;
+    text-align: flex-start;
+    margin-left: 80px
 }

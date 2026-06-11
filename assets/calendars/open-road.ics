@@ -2,11 +2,11 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Morgann Music//NONSGML v1.0//EN
 BEGIN:VEVENT
-UID:20260615T000000Z-openroad@morgannmusic.uk
+UID:20260705T000000Z-openroad@morgannmusic.uk
 DTSTAMP:20240520T100000Z
-DTSTART;VALUE=DATE:20260615
-DTEND;VALUE=DATE:20260616
-SUMMARY:Open Road - Une nouvelle histoire.
-DESCRIPTION:Nouvelle sortie musicale de Morgann Music : Open Road.
+DTSTART;VALUE=DATE:20260705
+DTEND;VALUE=DATE:20260706
+SUMMARY:Que Du Nouveau, l'annnnniv. - Fin d'un chapitre.
+DESCRIPTION:Nouvelle sortie musicale de Morgann Music : Que Du Nouveau, l'annnnniv.
 END:VEVENT
 END:VCALENDAR
