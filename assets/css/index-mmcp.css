@@ -13,13 +13,7 @@
     --txt-fn: #131F16;
     }
         
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --bg-accueil: #131F16;
-            --txt-fn: #E8ECE9;
 
-        }
-    }
 
         
      * {

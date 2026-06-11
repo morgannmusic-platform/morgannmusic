@@ -6,13 +6,6 @@
         --text-color3: #ffffff;
         --text-color2: #000000
     }
-        
-    @media (prefers-color-scheme: dark) {‡
-        :root {
-            --bg-nb: #131F16;
-            --nbscr: rgba(255, 255, 255, 0.15);
-        }
-    }
 
         
         .navbar- {
