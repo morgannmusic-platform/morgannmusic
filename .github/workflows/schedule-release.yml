@@ -2,24 +2,28 @@ name: Release Open Road
 
 on:
   schedule:
-    # Les GitHub Actions utilisent l'heure UTC. 
-    # Le 15 juin à minuit en France (heure d'été), il est 22h00 le 14 juin en UTC.
+    # Le 15 juin à minuit en France = 14 juin à 22h00 UTC
     - cron: '0 22 14 6 *'
 
 jobs:
-  release:
+  merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout du code
+      - name: Checkout du dépôt
         uses: actions/checkout@v4
         with:
-          ref: 'main' # Ou la branche où tu as préparé tes modifs
+          fetch-depth: 0 # Récupère tout l'historique pour pouvoir merge
 
-      - name: Appliquer la modif de sortie
+      - name: Configurer Git
         run: |
-          # Ici tu peux par exemple renommer un fichier, ou changer une variable
-          # Si tu as déjà tout préparé dans le code, tu peux juste forcer un commit vide pour trigger le build :
           git config --global user.name "Morgann Release Bot"
           git config --global user.email "bot@morgannmusic.com"
-          git commit --allow-empty -m "Release officielle - Open Road"
+
+      - name: Fusionner prep-open-road dans main
+        run: |
+          # Bascule sur main
+          git checkout main
+          # Fusionne la branche de prep
+          git merge origin/prep-open-road --no-ff -m "Merge automatique : Sortie de Open Road 🚀"
+          # Balance en ligne
           git push origin main
