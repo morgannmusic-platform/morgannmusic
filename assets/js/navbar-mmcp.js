@@ -14,7 +14,7 @@ fetch("/assets/navbar/navbar.html")
             document.head.appendChild(themeColorMeta);
         }
 
-        themeColorMeta.setAttribute('content', '#d7f1e0');
+        themeColorMeta.setAttribute('content', '#ffadc6');
 
         const scrollSteps = [
             { limit: 0, className: 'scrolled' }
@@ -24,10 +24,10 @@ fetch("/assets/navbar/navbar.html")
             scrollSteps.forEach(step => {
                 if (window.scrollY > step.limit) {
                     navbar.classList.add(step.className);
-                    themeColorMeta.setAttribute('content', '#e0ffd6');
+                    themeColorMeta.setAttribute('content', '#FC8FB0');
                 } else {
                     navbar.classList.remove(step.className);
-                    themeColorMeta.setAttribute('content', '#d7f1e0');
+                    themeColorMeta.setAttribute('content', '#ffadc6');
                 }
             });
         });
@@ -35,13 +35,13 @@ fetch("/assets/navbar/navbar.html")
         if (navbar) {
             navbar.addEventListener('mouseenter', () => {
                 if (navbar.classList.contains('scrolled')) {
-                    themeColorMeta.setAttribute('content', '#d7f1e0');
+                    themeColorMeta.setAttribute('content', '#ffadc6');
                 }
             });
 
             navbar.addEventListener('mouseleave', () => {
                 if (navbar.classList.contains('scrolled')) {
-                    themeColorMeta.setAttribute('content', '#e0ffd6');
+                    themeColorMeta.setAttribute('content', '#FC8FB0');
                 }
             });
         }
