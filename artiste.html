@@ -50,39 +50,17 @@
         </div>
     </section>
 
+    <!-- Section Featuring mise à jour dynamiquement -->
     <section class="dernierement-feat">
         <div class="dernierement-feat-content">
             <h2>Dernièrement en featuring</h2>
-            <div class="feat-card">
-                <img src="assets/img/brooklyn.jpeg" alt="Brooklyn" class="photodeprofil-feat">
-                <h2>Brooklyn & Morgann Music</h2>
+            <div id="latest-feat-container">
+                <p style="padding: 20px; text-align: center;">Chargement de la dernière sortie en feat...</p>
             </div>
-
-            <div class="dernieresortie-feat">
-                <div class="s-f">
-                    <div class="pochette-feat">
-                        <img src="https://toolost.s3.us-east-2.amazonaws.com/convertedArtwork/99db4e8c6e88473e9be05fa2029c6e75.jpg"
-                            alt="Pochette du feat">
-                    </div>
-                    <div class="s-f-info">
-                        <h1>GARÇON</h1>
-                        <p class="artist-name">Sur toutes vos plateformes depuis le 24 Juillet !</p>
-                    </div>
-                </div>
-
-                <div class="listento">
-                    <a href="https://music.apple.com/fr/album/gar%C3%A7on-single/6792185786" target="_blank">
-                        <img src="/assets/img/apple.webp">
-                        <p>Écouter sur Apple Music</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
         </div>
     </section>
 
+    <!-- Section Solo mise à jour dynamiquement -->
     <section class="dernierement-solo">
         <div class="dernierement-feat-content">
             <h2>Dernièrement en solo</h2>
@@ -91,28 +69,9 @@
                 <h2>Morgann Music</h2>
             </div>
 
-            <div class="dernieresortie-feat">
-                <div class="s-f">
-                    <div class="pochette-feat">
-                        <img src="https://toolost.s3.us-east-2.amazonaws.com/convertedArtwork/13c665fd9d5b461f91420890c6e195bb.jpg"
-                            alt="Pochette du feat">
-                    </div>
-                    <div class="s-f-info">
-                        <h1>Fatigué</h1>
-                        <p class="artist-name">Sur toutes vos plateformes depuis le 3 juillet !</p>
-                    </div>
-                </div>
-
-                <div class="listento">
-                    <a href="https://music.apple.com/fr/album/fatigu%C3%A9/6796400197" target="_blank">
-                        <img src="/assets/img/apple.webp">
-                        <p>Écouter sur Apple Music</p>
-                    </a>
-                </div>
+            <div id="latest-solo-release" class="dernieresortie-feat">
+                <p style="padding: 20px; text-align: center;">Chargement de la dernière sortie solo...</p>
             </div>
-        </div>
-
-
         </div>
     </section>
 
@@ -167,6 +126,7 @@
             </div>
         </section>
     </div>
+
     <div class="next-releases-container">
         <section class="next-release-1" style="border-right: 5px solid #a796b4;">
             <img src="pdp fatigué.png" alt="End of an era background" class="next-release-bg-img">
@@ -177,20 +137,119 @@
                 <h2>Depuis Juillet</h2>
                 <h1>Photo de profil</h1>
             </div>
+        </section>
     </div>
-    </section>
-
-    </div>
-
-    </section>
-
-    </div>
-
 
     <div id="footer-container"></div>
     <script src="/assets/js/footer.js"></script>
     <script src="index.js"></script>
     <script src="/assets/js/gsap.js"></script>
+
+    <!-- Script de mise à jour automatique des sorties (Solo & Feat) via l'API iTunes -->
+    <script>
+        async function fetchReleases() {
+            // Ton ID artiste Apple Music
+            const artistId = '1820890727';
+            const url = `https://itunes.apple.com/lookup?id=${artistId}&entity=album&country=fr`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const collections = data.results.filter(item => item.wrapperType === 'collection');
+
+                if (collections.length === 0) {
+                    document.getElementById('latest-solo-release').innerHTML = '<p style="padding: 20px; text-align: center;">Aucune sortie trouvée.</p>';
+                    document.getElementById('latest-feat-container').innerHTML = '<p style="padding: 20px; text-align: center;">Aucun featuring trouvé.</p>';
+                    return;
+                }
+
+                // Tri chronologique du plus récent au plus ancien
+                collections.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+
+                // --- 1. GESTION DE LA SORTIE SOLO ---
+                const soloReleases = collections.filter(item => {
+                    const artist = item.artistName.toLowerCase();
+                    const title = item.collectionName.toLowerCase();
+                    const hasFeatInArtist = artist.includes('&') || artist.includes(',') || artist.includes(' feat') || artist.includes(' x ');
+                    const hasFeatInTitle = title.includes('feat') || title.includes('ft.') || title.includes('with ');
+                    return !hasFeatInArtist && !hasFeatInTitle;
+                });
+
+                if (soloReleases.length > 0) {
+                    const latestSolo = soloReleases[0];
+                    const artworkUrlSolo = latestSolo.artworkUrl100.replace('100x100bb', '600x600bb');
+                    const dateSolo = new Date(latestSolo.releaseDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+
+                    document.getElementById('latest-solo-release').innerHTML = `
+                        <div class="s-f">
+                            <div class="pochette-feat">
+                                <img src="${artworkUrlSolo}" alt="Pochette de ${latestSolo.collectionName}">
+                            </div>
+                            <div class="s-f-info">
+                                <h1>${latestSolo.collectionName}</h1>
+                                <p class="artist-name">Sur toutes vos plateformes depuis le ${dateSolo} !</p>
+                            </div>
+                        </div>
+                        <div class="listento">
+                            <a href="${latestSolo.collectionViewUrl}" target="_blank">
+                                <img src="/assets/img/apple.webp" alt="Apple Music">
+                                <p>Écouter sur Apple Music</p>
+                            </a>
+                        </div>
+                    `;
+                }
+
+                // --- 2. GESTION DE LA SORTIE EN FEATURING ---
+                const featReleases = collections.filter(item => {
+                    const artist = item.artistName.toLowerCase();
+                    const title = item.collectionName.toLowerCase();
+                    const hasFeatInArtist = artist.includes('&') || artist.includes(',') || artist.includes(' feat') || artist.includes(' x ');
+                    const hasFeatInTitle = title.includes('feat') || title.includes('ft.') || title.includes('with ');
+                    return hasFeatInArtist || hasFeatInTitle;
+                });
+
+                if (featReleases.length > 0) {
+                    const latestFeat = featReleases[0];
+                    const artworkUrlFeat = latestFeat.artworkUrl100.replace('100x100bb', '600x600bb');
+                    const dateFeat = new Date(latestFeat.releaseDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+
+                    document.getElementById('latest-feat-container').innerHTML = `
+                        <div class="feat-card">
+                            <img src="${artworkUrlFeat}" alt="${latestFeat.artistName}" class="photodeprofil-feat">
+                            <h2>${latestFeat.artistName}</h2>
+                        </div>
+                        <div class="dernieresortie-feat">
+                            <div class="s-f">
+                                <div class="pochette-feat">
+                                    <img src="${artworkUrlFeat}" alt="Pochette de ${latestFeat.collectionName}">
+                                </div>
+                                <div class="s-f-info">
+                                    <h1>${latestFeat.collectionName}</h1>
+                                    <p class="artist-name">Sur toutes vos plateformes depuis le ${dateFeat} !</p>
+                                </div>
+                            </div>
+                            <div class="listento">
+                                <a href="${latestFeat.collectionViewUrl}" target="_blank">
+                                    <img src="/assets/img/apple.webp" alt="Apple Music">
+                                    <p>Écouter sur Apple Music</p>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('latest-feat-container').innerHTML = '<p style="padding: 20px; text-align: center;">Aucun featuring récent sur Apple Music.</p>';
+                }
+
+            } catch (error) {
+                console.error("Erreur de chargement des données iTunes:", error);
+                document.getElementById('latest-solo-release').innerHTML = '<p style="padding: 20px; text-align: center;">Erreur de chargement.</p>';
+                document.getElementById('latest-feat-container').innerHTML = '<p style="padding: 20px; text-align: center;">Erreur de chargement.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchReleases);
+    </script>
 </body>
 
 </html>
